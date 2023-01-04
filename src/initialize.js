@@ -8,22 +8,29 @@ mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGO_URL);
 
 
-const userData = [];
+const userData = [
+    { name: 'Michael Wallace', email: 'mwallace@thedoor.gov' },
+    { name: 'Sarah Michelle Gellar', email: 'vamp_slayer@buffy.com' }
+];
 
 const blogData= [];
 
-User.insertMany(userData, (err) => {
-    if (err) 
-        console.error(err);
-    else
-        console.log('User data imported successfully')
-});
 
-Blog.insertMany(blogData, (err) => {
-    if (err) 
-        console.error(err);
-    else
-        console.log('Blog data imported successfully')
-});
+( async () => {
 
-mongoose.connection.close();
+    await User.insertMany(userData).then(docs => {
+        console.log('User data imported successfully');
+        console.log(docs);
+    }).catch((err) => {
+        console.error(err);
+    });
+    
+    await Blog.insertMany(blogData).then(docs => {
+        console.log('Blog data imported successfully');
+        console.log(docs);
+    }).catch((err) => {
+            console.error(err);
+    });
+
+    mongoose.connection.close();
+})();
