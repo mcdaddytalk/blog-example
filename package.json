@@ -1,0 +1,18 @@
+{
+  "name": "blog-example",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "mongoose": "^6.8.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "db:init": "node src/initialize.js"
+  },
+  "type": "module"
+}
